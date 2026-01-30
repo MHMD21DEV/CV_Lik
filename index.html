@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Lik - Professional Resume Writing for Remote Jobs</title>
+    <!-- External Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Link to Separate Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Hero Section with ScrollSnap CV Templates -->
+    <div id="main-wrapper">
+        <!-- Fixed Text Overlay -->
+        <div class="text-container">
+            <div class="template-indicator">/ SCROLL TO EXPLORE</div>
+            <h1>Land Your Dream Remote Job</h1>
+            <p>Professional CV writing optimized for ATS systems and remote positions. Stand out from generic
+                candidates.</p>
+            <a href="#packages" class="cta-button">View Packages</a>
+        </div>
+
+        <!-- CV Templates Container -->
+        <div id="templates-container">
+            <!-- Template 1: Modern Minimalist -->
+            <div class="cv-template template-1" data-template="0">
+                <div class="header">
+                    <div class="name">Sarah Johnson</div>
+                    <div class="title">Product Designer</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Experience</div>
+                    <div class="content-line"></div>
+                    <div class="content-line"></div>
+                    <div class="content-line short"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Skills</div>
+                    <div class="content-line"></div>
+                    <div class="content-line short"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Education</div>
+                    <div class="content-line"></div>
+                    <div class="content-line short"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Projects</div>
+                    <div class="content-line"></div>
+                    <div class="content-line"></div>
+                </div>
+            </div>
+
+            <!-- Template 2: Bold Creative -->
+            <div class="cv-template template-2" data-template="1">
+                <div class="accent-bar"></div>
+                <div class="header">
+                    <div class="name">Alex Martinez</div>
+                    <div class="title">Creative Director</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Experience</div>
+                    <div class="content-box"></div>
+                    <div class="content-box"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Portfolio</div>
+                    <div class="content-box"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Awards</div>
+                    <div class="content-box"></div>
+                </div>
+            </div>
+
+            <!-- Template 3: Professional Executive -->
+            <div class="cv-template template-3" data-template="2">
+                <div class="sidebar">
+                    <div class="profile-circle"></div>
+                    <div class="name">Michael Chen</div>
+                    <div class="title">Senior Manager</div>
+                    <div class="section-title">Contact</div>
+                    <div style="margin-bottom: 20px; font-size: 0.75rem;">
+                        <div style="margin-bottom: 8px;">Email</div>
+                        <div style="margin-bottom: 8px;">Phone</div>
+                        <div>Location</div>
+                    </div>
+                    <div class="section-title">Skills</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill"></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="section">
+                        <div class="section-title">Professional Summary</div>
+                        <div class="content-line"></div>
+                        <div class="content-line"></div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">Experience</div>
+                        <div class="content-line"></div>
+                        <div class="content-line"></div>
+                        <div class="content-line short"></div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">Education</div>
+                        <div class="content-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template 4: Tech/Developer -->
+            <div class="cv-template template-4" data-template="3">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="section">
+                    <div class="prompt">~$</div>
+                    <div class="name">./james_kumar</div>
+                    <div class="title">Full Stack Developer</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">experience</div>
+                    <div class="code-line">Senior Developer @ TechCorp</div>
+                    <div class="code-line">Frontend Lead @ StartupXYZ</div>
+                    <div class="code-line">Junior Dev @ CodeFactory</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">skills</div>
+                    <div class="code-line">JavaScript, TypeScript, React</div>
+                    <div class="code-line">Node.js, Python, PostgreSQL</div>
+                    <div class="code-line">AWS, Docker, Kubernetes</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">projects</div>
+                    <div class="code-line">github.com/jameskumar/project1</div>
+                    <div class="code-line">github.com/jameskumar/project2</div>
+                </div>
+            </div>
+
+            <!-- Template 5: Clean Corporate -->
+            <div class="cv-template template-5" data-template="4">
+                <div class="header">
+                    <div class="name">Emma Williams</div>
+                    <div class="title">Marketing Manager</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Professional Summary</div>
+                    <div class="content-line"></div>
+                    <div class="content-line"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Core Competencies</div>
+                    <div class="info-grid">
+                        <div class="info-box">Digital Marketing</div>
+                        <div class="info-box">Brand Strategy</div>
+                        <div class="info-box">Analytics</div>
+                        <div class="info-box">Team Leadership</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Experience</div>
+                    <div class="content-line"></div>
+                    <div class="content-line"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <svg fill="white" viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+            </svg>
+            <div style="font-size: 0.75rem; margin-top: 5px;">Scroll</div>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Why Your CV Isn't Getting Interviews</h2>
+            <p class="section-subtitle">Most CVs fail before a human even sees them. Here's why.</p>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>❌ Not ATS-Optimized</h3>
+                    <p>70% of applications are rejected by automated systems before reaching recruiters. Your CV needs
+                        proper formatting and keywords.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Generic Content</h3>
+                    <p>Using the same CV for every job shows no effort. Recruiters spot generic templates immediately.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Poor Remote Positioning</h3>
+                    <p>Remote jobs require specific skills and experience presentation. Your CV isn't highlighting what
+                        remote employers want.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Clients Hired</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Interview Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Average Delivery</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.9★</div>
+                    <div class="stat-label">Client Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Package</h2>
+            <p class="section-subtitle">Professional CV writing tailored to your career goals</p>
+
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-name">Essential</div>
+                    <div class="package-price">499 <span>MAD</span></div>
+                    <ul class="package-features">
+                        <li>Professional CV rewrite</li>
+                        <li>ATS optimization</li>
+                        <li>1 revision included</li>
+                        <li>48-hour delivery</li>
+                        <li>PDF + Word formats</li>
+                    </ul>
+                    <a href="#" class="package-button">Get Started</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="package-name">Professional</div>
+                    <div class="package-price">899 <span>MAD</span></div>
+                    <ul class="package-features">
+                        <li>Everything in Essential</li>
+                        <li>LinkedIn profile optimization</li>
+                        <li>Custom cover letter template</li>
+                        <li>3 revisions included</li>
+                        <li>24-hour delivery</li>
+                        <li>Interview preparation guide</li>
+                        <li>Remote job positioning</li>
+                    </ul>
+                    <a href="#" class="package-button">Most Popular</a>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-name">Premium</div>
+                    <div class="package-price">1,499 <span>MAD</span></div>
+                    <ul class="package-features">
+                        <li>Everything in Professional</li>
+                        <li>Personal brand strategy</li>
+                        <li>Portfolio/website review</li>
+                        <li>5 custom cover letters</li>
+                        <li>Unlimited revisions (30 days)</li>
+                        <li>12-hour delivery</li>
+                        <li>Video interview coaching (1hr)</li>
+                        <li>Job search strategy session</li>
+                    </ul>
+                    <a href="#" class="package-button">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Your CV</h3>
+                    <p>Share your current CV and tell us about your target roles and career goals.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Professional Review</h3>
+                    <p>Our expert writers analyze your experience and optimize for ATS and remote positions.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Receive Your CV</h3>
+                    <p>Get your professionally written, ATS-optimized CV ready to land interviews.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Land Interviews</h3>
+                    <p>Apply with confidence and start getting interview callbacks from top remote companies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section">
+        <div class="container">
+            <div class="download-content">
+                <h2>Get Our Free Remote Job Guide</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">Download our comprehensive guide to landing remote
+                    positions, including ATS tips and interview strategies.</p>
+                <a href="javascript:void(0)" onclick="downloadGuide()" class="download-button">Download Free Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What makes your CV writing service different?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        We specialize in ATS optimization and remote job positioning. Our writers have placed 500+
+                        candidates in remote roles at international companies. We don't use generic templates - every CV
+                        is custom-written based on your unique experience and target roles.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does the process take?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Standard delivery is 48 hours for the Essential package, 24 hours for Professional, and 12 hours
+                        for Premium. Rush delivery options are available for urgent needs.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you work with all industries?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Yes! We have experience across tech, marketing, finance, design, customer service, and more. Our
+                        writers research industry-specific keywords and requirements for each client.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I'm not satisfied with the result?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        All packages include revisions. We'll work with you until you're completely satisfied. Your
+                        success is our priority, and we stand behind our work 100%.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CV Lik. Professional CV Writing for Remote Jobs.</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Helping job seekers land remote positions worldwide.</p>
+        </div>
+    </footer>
+
+    <!-- Link to Separate Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
