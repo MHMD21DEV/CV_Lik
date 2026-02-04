@@ -2,18 +2,24 @@
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hide the text-container when scrolling past hero
-    gsap.to(".text-container", {
-        scrollTrigger: {
-            trigger: "#main-wrapper",
-            start: "bottom 95%",
-            end: "bottom 70%",
-            scrub: true,
-        },
-        opacity: 0,
-        y: "-=50",
-        scale: 0.9,
-        pointerEvents: 'none'
+    // Hide the text-container when scrolling past hero - bidirectional
+    ScrollTrigger.create({
+        trigger: "#main-wrapper",
+        start: "50px top",
+        end: "400px top",
+        scrub: true,
+        onUpdate: (self) => {
+            const progress = self.progress;
+            gsap.set('.text-container', {
+                autoAlpha: 1 - progress,
+                y: -100 * progress,
+                scale: 1 - (0.05 * progress),
+                pointerEvents: progress > 0.5 ? 'none' : 'auto'
+            });
+            gsap.set('.scroll-indicator', {
+                autoAlpha: 0.7 * (1 - progress)
+            });
+        }
     });
 
     // Gradient backgrounds for each template
@@ -32,16 +38,40 @@ document.addEventListener("DOMContentLoaded", function () {
     let isAnimating = false;
 
     // Show first template
-    gsap.set(templates[0], { opacity: 1, scale: 1 });
+    gsap.set(templates[0], { opacity: 1, scale: 1, pointerEvents: 'auto' });
+    templates.forEach((t, i) => { if (i !== 0) gsap.set(t, { pointerEvents: 'none' }); });
 
-    // Initial text container animation
-    gsap.from('.text-container', {
-        opacity: 0,
-        x: -50,
-        duration: 1,
-        delay: 0.3,
-        ease: "power3.out"
+    // Force ScrollTrigger refresh to clear potential DOM caching from previous sessions
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
     });
+
+    // Initial state based on scroll position
+    const initHeroElements = () => {
+        if (window.scrollY > 100) {
+            // Already scrolled down - hide elements immediately
+            gsap.set('.text-container', { autoAlpha: 0, y: -100, scale: 0.95, pointerEvents: 'none' });
+            gsap.set('.scroll-indicator', { autoAlpha: 0 });
+        } else {
+            // At top - show elements with animation
+            gsap.to('.text-container', {
+                autoAlpha: 1,
+                x: 0,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                delay: 0.2,
+                ease: "power2.out"
+            });
+            gsap.to('.scroll-indicator', {
+                autoAlpha: 0.7,
+                duration: 0.8,
+                delay: 0.4
+            });
+        }
+    };
+
+    initHeroElements();
 
     // Function to switch templates
     function switchTemplate(newIndex) {
@@ -65,7 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.to(oldTemplate, {
             scale: 0.5,
             opacity: 0,
-            duration: 0.6,
+            pointerEvents: 'none',
+            duration: 0.4, // Reduced from 0.6
             ease: "power2.out"
         });
 
@@ -75,7 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 scale: 1,
                 opacity: 1,
-                duration: 0.6,
+                pointerEvents: 'auto',
+                duration: 0.4, // Reduced from 0.6
                 ease: "power2.out",
                 onComplete: () => {
                     isAnimating = false;
@@ -150,36 +182,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Rest of the landing page animations
-    // Problem Cards Animation
+    // Problem Cards Animation with Blur-to-Focus (Balanced)
     gsap.to('.problem-card', {
         scrollTrigger: {
             trigger: '.problem-section',
-            start: 'top 80%'
+            start: 'top 80%', // Slightly later for more deliberate reveal
         },
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        stagger: 0.2
+        filter: "blur(0px)",
+        duration: 0.8, // Balanced duration
+        ease: "power2.out",
+        stagger: 0.12
     });
 
-    // Stats Animation
+    // Parallax background for Problem Section
+    gsap.to('.problem-section', {
+        scrollTrigger: {
+            trigger: '.problem-section',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1 // Adding scrub smoothing for a steadier feel
+        },
+        backgroundPosition: "50% 60%",
+        ease: "none"
+    });
+
+    // Stats Animation (Balanced)
     gsap.to('.stat-item', {
         scrollTrigger: {
             trigger: '.stats-section',
-            start: 'top 80%'
+            start: 'top 80%',
         },
         opacity: 1,
         scale: 1,
-        duration: 0.6,
-        stagger: 0.15
+        filter: "blur(0px)",
+        duration: 0.7,
+        ease: "power2.out",
+        stagger: 0.1
     });
 
     // Animate stat numbers
     document.querySelectorAll('.stat-number').forEach(stat => {
         ScrollTrigger.create({
             trigger: stat,
-            start: 'top 85%',
+            start: 'top 90%',
             onEnter: () => {
                 const finalString = stat.textContent;
                 let numericValue = parseFloat(finalString.replace(/[^\d.]/g, ''));
@@ -191,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const obj = { n: 0 };
                 gsap.to(obj, {
                     n: numericValue,
-                    duration: 2,
+                    duration: 1.5, // Slightly shorter for better pace
                     ease: "power2.out",
                     onUpdate: () => {
                         if (isPercentage) {
@@ -211,7 +258,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Package Cards Animation
+    // 3D Tilt Effect for Templates
+    document.querySelectorAll('.cv-template').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 12; // Slightly more subtle tilt
+            const rotateY = (centerX - x) / 12;
+
+            gsap.to(card, {
+                rotateX: rotateX,
+                rotateY: rotateY,
+                scale: 1.03, // More subtle zoom
+                duration: 0.6,
+                ease: "power2.out",
+                transformPerspective: 1000
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+    });
+
+    // Package Cards Animation (Balanced)
     gsap.to('.package-card', {
         scrollTrigger: {
             trigger: '.packages-section',
@@ -219,11 +300,13 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         opacity: 1,
         scale: 1,
+        filter: "blur(0px)",
         duration: 0.8,
-        stagger: 0.2
+        ease: "power2.out",
+        stagger: 0.12
     });
 
-    // Process Steps Animation
+    // Process Steps Animation (Balanced)
     gsap.to('.process-step', {
         scrollTrigger: {
             trigger: '.process-section',
@@ -232,10 +315,11 @@ document.addEventListener("DOMContentLoaded", function () {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        stagger: 0.2
+        ease: "power2.out",
+        stagger: 0.12
     });
 
-    // Download Section Animation
+    // Download Section Animation (Balanced)
     gsap.to('.download-content', {
         scrollTrigger: {
             trigger: '.download-section',
@@ -243,10 +327,11 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         opacity: 1,
         scale: 1,
-        duration: 1
+        duration: 0.8,
+        ease: "power2.out"
     });
 
-    // FAQ Animation
+    // FAQ Animation (Balanced)
     gsap.to('.faq-item', {
         scrollTrigger: {
             trigger: '.faq-section',
@@ -255,7 +340,8 @@ document.addEventListener("DOMContentLoaded", function () {
         opacity: 1,
         x: 0,
         duration: 0.6,
-        stagger: 0.15
+        ease: "power2.out",
+        stagger: 0.08
     });
 
     // FAQ Accordion
@@ -277,6 +363,65 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    // Currency Toggle Logic (Shared State)
+    const currencyToggles = document.querySelectorAll('.currency-toggle-input');
+    const priceElements = document.querySelectorAll('.package-price');
+
+    function updatePrices(isUSD, sourceToggle = null) {
+        // Sync all toggles
+        currencyToggles.forEach(toggle => {
+            if (toggle !== sourceToggle) {
+                toggle.checked = isUSD;
+            }
+        });
+
+        // Animation for the price change
+        gsap.to(priceElements, {
+            opacity: 0,
+            y: 5,
+            duration: 0.2,
+            onComplete: () => {
+                priceElements.forEach(el => {
+                    const mad = el.getAttribute('data-mad');
+                    const usd = el.getAttribute('data-usd');
+                    const span = el.querySelector('span');
+
+                    if (isUSD) {
+                        el.childNodes[0].textContent = usd + ' ';
+                        span.textContent = 'USD';
+                    } else {
+                        el.childNodes[0].textContent = mad + ' ';
+                        span.textContent = 'MAD';
+                    }
+                });
+
+                gsap.to(priceElements, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.3,
+                    stagger: 0.05
+                });
+            }
+        });
+
+        localStorage.setItem('preferredCurrency', isUSD ? 'USD' : 'MAD');
+    }
+
+    // Load preference
+    const savedCurrency = localStorage.getItem('preferredCurrency');
+    const isUSDInitial = savedCurrency === 'USD';
+
+    currencyToggles.forEach(toggle => {
+        toggle.checked = isUSDInitial;
+        toggle.addEventListener('change', (e) => {
+            updatePrices(e.target.checked, e.target);
+        });
+    });
+
+    if (isUSDInitial) {
+        updatePrices(true);
+    }
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
