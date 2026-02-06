@@ -142,71 +142,63 @@ document.addEventListener("DOMContentLoaded", function () {
             duration: 0.5
         });
 
-        // Interactive Polish for Desktop
-        templates.forEach((card, index) => {
-            if (window.innerWidth >= 1024) {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+        // --- ANTIGRAVITY MOTION SYSTEM ---
 
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
+        // 1. Jelly Scroll (Elastic Physics)
+        let proxy = { skew: 0 },
+            skewSetter = gsap.quickSetter(".cv-template", "skewY", "deg"),
+            clamp = gsap.utils.clamp(-15, 15); // Maximum skew angle
 
-                    // Enhanced tilt intensity
-                    const rotateX = (y - centerY) / 10;
-                    const rotateY = (centerX - x) / 10;
-
-                    // Dynamic glare effect based on position
-                    const glareX = (x / rect.width) * 100;
-                    const glareY = (y / rect.height) * 100;
-
-                    gsap.to(card, {
-                        rotateX: rotateX,
-                        rotateY: rotateY,
-                        scale: 1.05,
-                        duration: 0.4,
-                        ease: "power2.out",
-                        transformPerspective: 1000,
-                        transformOrigin: "center center",
-                        boxShadow: `0 ${30 + Math.abs(rotateX) * 2}px ${60 + Math.abs(rotateY) * 2}px rgba(0,0,0,0.4)`
-                    });
-
-                    // Subtle image shift for glare effect
-                    const img = card.querySelector('.template-preview');
-                    if (img) {
-                        gsap.to(img, {
-                            x: (x - centerX) / 15,
-                            y: (y - centerY) / 15,
-                            scale: 1.1,
-                            duration: 0.4,
-                            ease: "power2.out"
-                        });
-                    }
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    gsap.to(card, {
-                        rotateX: 0,
-                        rotateY: 0,
-                        scale: 1,
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                let skew = clamp(self.getVelocity() / -400);
+                if (Math.abs(skew) > Math.abs(proxy.skew)) {
+                    proxy.skew = skew;
+                    gsap.to(proxy, {
+                        skew: 0,
                         duration: 0.8,
-                        ease: "elastic.out(1, 0.5)",
-                        boxShadow: "0 25px 60px rgba(0, 0, 0, 0.3)"
+                        ease: "power3",
+                        overwrite: true,
+                        onUpdate: () => skewSetter(proxy.skew)
                     });
-
-                    const img = card.querySelector('.template-preview');
-                    if (img) {
-                        gsap.to(img, {
-                            x: 0,
-                            y: 0,
-                            scale: 1,
-                            duration: 0.8,
-                            ease: "power2.out"
-                        });
-                    }
-                });
+                }
             }
+        });
+
+        // 2. Weightless Hover/Touch Interactions
+        templates.forEach((card) => {
+            const floatUp = () => {
+                gsap.to(card, {
+                    y: -25, // "Float" upwards
+                    scale: 1.05,
+                    boxShadow: "0 40px 80px rgba(0, 0, 0, 0.45)", // Simulate distance
+                    duration: 0.6,
+                    ease: "expo.out",
+                    overwrite: "auto"
+                });
+            };
+
+            const landDown = () => {
+                gsap.to(card, {
+                    y: 0,
+                    scale: 1,
+                    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+                    duration: 0.4,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            };
+
+            // Desktop Hover
+            if (window.innerWidth >= 1024) {
+                card.addEventListener('mouseenter', floatUp);
+                card.addEventListener('mouseleave', landDown);
+            }
+
+            // Mobile Touch (Instant Reset for Stability)
+            card.addEventListener('touchstart', floatUp, { passive: true });
+            card.addEventListener('touchend', landDown);
+            card.addEventListener('touchcancel', landDown);
         });
     }
 
@@ -533,6 +525,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+
+
 });
 
 // Download Guide functionality

@@ -11,6 +11,8 @@ body {
     padding: 0;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    background-color: #1A1A1A;
+    /* Fixes the white gap showing through */
 }
 
 body {
@@ -29,9 +31,10 @@ body {
 #main-wrapper {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100dvh;
+    /* changing 'vh' to 'dvh' fixes the address bar jump */
     background: #1A1A1A;
-    overflow: hidden;
+    overflow-x: hidden;
     /* Contain decorative animations */
 }
 
@@ -419,14 +422,14 @@ input:checked+.slider:before {
     font-weight: 800;
     font-size: 1.2rem;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 20px 40px rgba(49, 214, 119, 0.3);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.7);
     text-shadow: none;
 }
 
 .cta-button:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 30px 60px rgb(112 196 75);
-    background: rgb(41 41 41);
+    box-shadow: 0 10px 25px rgb(112 196 75);
+    background: rgb(23 24 23);
     color: #70c44b;
 }
 
@@ -1124,10 +1127,16 @@ footer {
     margin: 0 auto !important;
     opacity: 1 !important;
     visibility: visible !important;
-    box-shadow: rgb(255 255 255 / 50%) 0px 25px 60px;
     border-radius: 8px;
     overflow: hidden;
+    /* Motion Prep */
+    will-change: transform;
+    transform: translateY(0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* GSAP will handle all interactions smoothly */
 }
+
+
 
 @media (max-width: 767px) {
     #main-wrapper {
