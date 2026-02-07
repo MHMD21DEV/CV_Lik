@@ -181,10 +181,12 @@ body {
 /* Section Headers */
 .section-header-flex {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: center;
+    /* Senior: Absolute centering */
+    align-items: center;
     margin-bottom: 50px;
     gap: 30px;
+    width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -207,10 +209,12 @@ body {
 }
 
 .section-title {
-    font-size: 2.8rem;
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
     font-weight: 800;
     margin-bottom: 15px;
     text-align: center;
+    padding: 0 15px;
+    /* Added padding to prevent edge hitting on mobile */
     background: linear-gradient(135deg, #ffffff 0%, #a5f3c0 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -242,18 +246,123 @@ body {
     color: rgba(15, 23, 42, 0.7);
 }
 
+
+/* Desktop Header Centering */
+@media (min-width: 1024px) {
+
+    .problem-header,
+    .packages-header,
+    .faq-header,
+    .process-header,
+    .transformations-section .process-header,
+    .problem-title,
+    .package-title,
+    .process-title,
+    #transformations-section h2 {
+        text-align: center !important;
+        margin-inline: auto !important;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .section-title,
+    .section-subtitle {
+        text-align: center !important;
+        margin-inline: auto !important;
+    }
+}
+
+/* RTL Alignment Overrides */
+[dir="rtl"] .problem-header,
+[dir="rtl"] .packages-header,
+[dir="rtl"] .faq-header,
+[dir="rtl"] .process-header {
+    text-align: right;
+    margin-inline: 0 auto;
+    /* Align the capped 800px box to the right */
+}
+
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-subtitle {
+    text-align: center;
+    /* Titles remain centered as per branding */
+}
+
+/* Arabic Package Feature Alignment */
+[dir="rtl"] .package-features {
+    text-align: right;
+}
+
+[dir="rtl"] .package-features li {
+    display: flex;
+    flex-direction: row;
+    /* Natural RTL: Items start from right */
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+}
+
+[dir="rtl"] .package-features li:before {
+    margin-inline-end: 0;
+    margin-inline-start: 0;
+}
+
 /* Currency Switch */
 .currency-switch-container {
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(12px);
-    padding: 12px 24px;
+    padding: 8px 16px;
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    display: inline-flex;
+    display: flex;
+    /* Senior: Force flex and center regardless of direction */
     align-items: center;
-    gap: 15px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 30px rgb(49 214 119 / 25%);
+    justify-content: center !important;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-inline: auto;
+    /* Absolute centering using logical properties */
+    direction: ltr !important;
+    /* Force toggle label ordering (MAD - Toggle - USD) */
+}
+
+.currency-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.currency-label.active {
+    color: #31D677;
+}
+
+.currency-switch {
+    width: 44px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.switch-handle {
+    position: absolute;
+    top: 3px;
+    inset-inline-start: 3px;
+    /* Logical Start */
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.currency-switch.usd-active .switch-handle {
+    transform: translateX(22px);
+    background: #31D677;
 }
 
 .currency-switch-container.centered {
@@ -382,7 +491,7 @@ input:checked+.slider:before {
     font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 900;
     margin-bottom: 25px;
-    line-height: 1;
+    line-height: 1.2;
     letter-spacing: -0.04em;
     background: linear-gradient(to right, #fff, #a5f3fc);
     -webkit-background-clip: text;
@@ -461,7 +570,7 @@ input:checked+.slider:before {
     aspect-ratio: 8.5 / 11;
     background: white;
     border-radius: 20px;
-    box-shadow: rgba(255, 255, 255, 0.45) 0px 25px 60px !important;
+    box-shadow: 0 10px 25px hsla(0, 0%, 10%, 0.639) !important;
     overflow: hidden;
     margin: 0 auto;
     transform-style: preserve-3d;
@@ -473,7 +582,7 @@ input:checked+.slider:before {
 }
 
 .cv-template:hover {
-    box-shadow: rgba(255, 255, 255, 0.7) 0px 35px 80px !important;
+    box-shadow: 0 20px 40px rgb(255 255 255) !important;
     transform: translateY(-8px);
 }
 
@@ -482,7 +591,6 @@ input:checked+.slider:before {
     height: 100%;
     display: block;
     transition: transform 0.5s ease;
-    border-radius: 8px;
 }
 
 /* PDF Preview Button - No Background */
@@ -515,7 +623,6 @@ input:checked+.slider:before {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, -50%) scale(1);
-    border-color: #31D677;
 }
 
 .pdf-preview-btn:hover {
@@ -530,13 +637,14 @@ input:checked+.slider:before {
 .cv-template.template-4 .pdf-preview-btn,
 .cv-template.template-5 .pdf-preview-btn {
     color: #0f172a;
+    border-color: #0f172a !important;
 }
 
 .cv-template.template-3 .pdf-preview-btn:hover,
 .cv-template.template-4 .pdf-preview-btn:hover,
 .cv-template.template-5 .pdf-preview-btn:hover {
     color: #31D677;
-    border-color: #31D677;
+    border-color: #31D677 !important;
 }
 
 /* Template color theme markers (keeping for JS background switching logic) */
@@ -725,7 +833,8 @@ input:checked+.slider:before {
 .package-features {
     list-style: none;
     margin: 30px 0;
-    text-align: left;
+    text-align: start;
+    /* Logical Property */
 }
 
 .package-features li {
@@ -741,7 +850,8 @@ input:checked+.slider:before {
     content: "✓ ";
     color: #31D677;
     font-weight: bold;
-    margin-right: 10px;
+    margin-inline-end: 10px;
+    /* Logical Spacing */
 }
 
 .package-card.featured .package-features li:before {
@@ -758,11 +868,15 @@ input:checked+.slider:before {
     font-weight: 600;
     margin-top: 20px;
     transition: all 0.3s;
+    border: 2px solid #000;
+    /* Standard: High contrast on white */
 }
 
 .package-card.featured .package-button {
     background: white;
     color: #31D677;
+    border: 2px solid #fff;
+    /* White border for dark cards */
 }
 
 .package-button:hover {
@@ -866,6 +980,8 @@ input:checked+.slider:before {
     user-select: none;
     cursor: ew-resize;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    touch-action: pan-y;
+    /* Standard: Pan-y for vertical scrolling */
 }
 
 .slider-image {
@@ -915,11 +1031,13 @@ input:checked+.slider:before {
 }
 
 .before .label {
-    left: 30px;
+    inset-inline-start: 30px;
+    /* Logical Start */
 }
 
 .after .label {
-    right: 30px;
+    inset-inline-end: 30px;
+    /* Logical End */
 }
 
 .slider-handle {
@@ -1220,7 +1338,8 @@ footer {
 .back-to-top-btn {
     position: fixed;
     bottom: 40px;
-    right: 40px;
+    inset-inline-end: 40px;
+    /* 40px Diagonal Symmetry */
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -1254,7 +1373,8 @@ footer {
 .progress-ring {
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
+    /* Logical Start */
     transform: rotate(-90deg);
     /* Start from top */
 }
@@ -1273,7 +1393,7 @@ footer {
 @media (max-width: 768px) {
     .back-to-top-btn {
         bottom: 20px;
-        right: 20px;
+        inset-inline-end: 20px;
         width: 50px;
         height: 50px;
     }
@@ -1302,3 +1422,133 @@ footer {
 }
 
 /* End of specialized mobile overrides */
+
+/* Language Switcher Styling (Top-Left Symmetry - Advanced Dropdown) */
+.lang-switcher {
+    position: fixed;
+    top: 40px;
+    inset-inline-start: 40px;
+    /* 40px Diagonal Symmetry */
+    z-index: 10000;
+    min-width: 80px;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 50px;
+}
+
+.lang-current {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 18px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-current:hover {
+    border-color: rgba(49, 214, 119, 0.4);
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.dropdown-arrow {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lang-switcher.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.lang-options {
+    position: absolute;
+    top: calc(100% + 10px);
+    inset-inline-start: 0;
+    /* Logical Start */
+    width: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transform-origin: top center;
+    pointer-events: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.lang-switcher.active .lang-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+
+.lang-opt {
+    padding: 12px 18px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.lang-opt:hover {
+    background: rgba(49, 214, 119, 0.15);
+    color: #31D677;
+}
+
+.lang-opt.active {
+    color: #31D677;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* RTL Support (Arabic) */
+[dir="rtl"] {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    text-align: right;
+}
+
+[dir="rtl"] body {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+}
+
+/* Logical properties handle lang-switcher and back-to-top positioning automatically */
+
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-subtitle,
+[dir="rtl"] .hero-desc,
+[dir="rtl"] .text-container h1,
+[dir="rtl"] .text-container p {
+    text-align: center;
+    /* Titles stay centered */
+}
+
+/* Mobile Adjustments for Switcher */
+@media (max-width: 768px) {
+    .lang-switcher {
+        top: 20px;
+        inset-inline-start: 20px;
+    }
+
+    [dir="rtl"] .lang-switcher {
+        left: auto;
+        right: 20px;
+    }
+
+    .lang-current {
+        padding: 8px 14px;
+        font-size: 0.75rem;
+    }
+}

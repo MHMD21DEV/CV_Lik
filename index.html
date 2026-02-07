@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Lik - Professional Resume Writing for Remote Jobs</title>
+    <title data-i18n="site-title">CV Lik - Professional Resume Writing for Remote Jobs</title>
     <!-- External Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Link to Separate Stylesheet -->
@@ -18,6 +18,23 @@
 </head>
 
 <body>
+    <!-- Language Switcher Dropdown (Top Left Symmetry) -->
+    <div class="lang-switcher">
+        <div class="lang-current">
+            <span id="current-lang-text">EN</span>
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9L12 15L18 9" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+        <div class="lang-options">
+            <div class="lang-opt" data-lang="en">EN</div>
+            <div class="lang-opt" data-lang="fr">FR</div>
+            <div class="lang-opt" data-lang="es">ES</div>
+            <div class="lang-opt" data-lang="ara">ARA</div>
+        </div>
+    </div>
+
     <!-- Hero Section with ScrollSnap CV Templates -->
     <div id="main-wrapper">
         <!-- Decorative Background Columns (Desktop Only) -->
@@ -209,11 +226,12 @@
         </div>
         <!-- Fixed Text Overlay -->
         <div class="text-container">
-            <div class="template-indicator">/ SCROLL TO EXPLORE</div>
-            <h1>Land Your Dream Remote Job</h1>
-            <p>Professional CV writing optimized for ATS systems and remote positions. Stand out from generic
+            <div class="template-indicator" data-i18n="nav.explore">/ SCROLL TO EXPLORE</div>
+            <h1 data-i18n="hero.title">Land Your Dream Remote Job</h1>
+            <p data-i18n="hero.desc">Professional CV writing optimized for ATS systems and remote positions. Stand out
+                from generic
                 candidates.</p>
-            <a href="#packages" class="cta-button">View Packages</a>
+            <a href="#packages" class="cta-button" data-i18n="nav.packages">View Packages</a>
         </div>
 
         <!-- CV Templates Container - Refactored for Horizontal Scroll -->
@@ -261,7 +279,7 @@
             <svg fill="white" viewBox="0 0 24 24">
                 <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
             </svg>
-            <div style="font-size: 0.75rem; margin-top: 5px;">Scroll</div>
+            <div style="font-size: 0.75rem; margin-top: 5px;"><span data-i18n="nav.scroll">Scroll</span></div>
         </div>
     </div>
 
@@ -269,25 +287,26 @@
     <section class="problem-section">
         <div class="container">
             <div class="problem-header">
-                <h2 class="section-title">Why Your CV Isn't Getting Interviews</h2>
-                <p class="section-subtitle">Most CVs fail before a human even sees them. Here's why.</p>
+                <h2 class="section-title" data-i18n="problem.title">Why Your CV Isn't Getting Interviews</h2>
+                <p class="section-subtitle" data-i18n="problem.subtitle">Most CVs fail before a human even sees them.
+                    Here's why.</p>
             </div>
 
             <div class="problem-grid">
                 <div class="problem-card">
-                    <h3>❌ Not ATS-Optimized</h3>
-                    <p>70% of applications are rejected by automated systems before reaching recruiters. Your CV needs
-                        proper formatting and keywords.</p>
+                    <h3 data-i18n="problem.cards.ats.t">❌ Not ATS-Optimized</h3>
+                    <p data-i18n="problem.cards.ats.p">70% of applications are rejected by automated systems before
+                        reaching recruiters. Your CV needs proper formatting and keywords.</p>
                 </div>
                 <div class="problem-card">
-                    <h3>❌ Generic Content</h3>
-                    <p>Using the same CV for every job shows no effort. Recruiters spot generic templates immediately.
-                    </p>
+                    <h3 data-i18n="problem.cards.generic.t">❌ Generic Content</h3>
+                    <p data-i18n="problem.cards.generic.p">Using the same CV for every job shows no effort. Recruiters
+                        spot generic templates immediately.</p>
                 </div>
                 <div class="problem-card">
-                    <h3>❌ Poor Remote Positioning</h3>
-                    <p>Remote jobs require specific skills and experience presentation. Your CV isn't highlighting what
-                        remote employers want.</p>
+                    <h3 data-i18n="problem.cards.remote.t">❌ Poor Remote Positioning</h3>
+                    <p data-i18n="problem.cards.remote.p">Remote jobs require specific skills and experience
+                        presentation. Your CV isn't highlighting what remote employers want.</p>
                 </div>
             </div>
         </div>
@@ -299,19 +318,19 @@
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-number">500+</div>
-                    <div class="stat-label">Clients Hired</div>
+                    <div class="stat-label" data-i18n="stats.clients">Clients Hired</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">89%</div>
-                    <div class="stat-label">Interview Rate</div>
+                    <div class="stat-label" data-i18n="stats.rate">Interview Rate</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">24h</div>
-                    <div class="stat-label">Average Delivery</div>
+                    <div class="stat-label" data-i18n="stats.delivery">Average Delivery</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">4.9★</div>
-                    <div class="stat-label">Client Rating</div>
+                    <div class="stat-label" data-i18n="stats.rating">Client Rating</div>
                 </div>
             </div>
         </div>
@@ -321,39 +340,40 @@
     <section id="packages" class="packages-section">
         <div class="container">
             <div class="packages-header">
-                <h2 class="section-title">Investment in Your Future</h2>
-                <p class="section-subtitle">Strategic packages designed for your career level.</p>
+                <h2 class="section-title" data-i18n="packages.title">Choose Your Success Path</h2>
+                <p class="section-subtitle" data-i18n="packages.subtitle">Invest in your career with our professional
+                    writing services.</p>
+            </div>
 
-                <div class="currency-switch-container centered" id="toggle-packages">
-                    <span class="currency-label">MAD</span>
-                    <label class="switch">
-                        <input type="checkbox" class="currency-toggle-input">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="currency-label">USD</span>
+            <div class="section-header-flex">
+                <div class="currency-switch-container">
+                    <span class="currency-label active" data-currency="MAD">MAD</span>
+                    <div class="currency-switch" id="currency-toggle">
+                        <div class="switch-handle"></div>
+                    </div>
+                    <span class="currency-label" data-currency="USD">USD</span>
                 </div>
             </div>
 
             <div class="packages-grid">
                 <div class="package-card">
-                    <div class="package-name">Essential</div>
+                    <div class="package-name" data-i18n="packages.essential.name">Essential</div>
                     <div class="package-price" data-mad="499" data-usd="49">499 <span>MAD</span></div>
-                    <a href="#" class="package-button">Get Started</a>
-                    <ul class="package-features">
+                    <a href="#" class="package-button" data-i18n="packages.btn">Get Started</a>
+                    <ul class="package-features" data-i18n="packages.essential.features">
                         <li>Professional CV rewrite</li>
                         <li>ATS optimization</li>
                         <li>1 revision included</li>
                         <li>48-hour delivery</li>
                         <li>PDF + Word formats</li>
                     </ul>
-
                 </div>
 
                 <div class="package-card featured">
-                    <div class="package-name">Professional</div>
+                    <div class="package-name" data-i18n="packages.professional.name">Professional</div>
                     <div class="package-price" data-mad="899" data-usd="89">899 <span>MAD</span></div>
-                    <a href="#" class="package-button">Most Popular</a>
-                    <ul class="package-features">
+                    <a href="#" class="package-button" data-i18n="packages.btn_popular">Most Popular</a>
+                    <ul class="package-features" data-i18n="packages.professional.features">
                         <li>Everything in Essential</li>
                         <li>LinkedIn profile optimization</li>
                         <li>Custom cover letter template</li>
@@ -362,14 +382,13 @@
                         <li>Interview preparation guide</li>
                         <li>Remote job positioning</li>
                     </ul>
-
                 </div>
 
                 <div class="package-card">
-                    <div class="package-name">Premium</div>
+                    <div class="package-name" data-i18n="packages.premium.name">Premium</div>
                     <div class="package-price" data-mad="1,499" data-usd="149">1,499 <span>MAD</span></div>
-                    <a href="#" class="package-button">Get Started</a>
-                    <ul class="package-features">
+                    <a href="#" class="package-button" data-i18n="packages.btn">Get Started</a>
+                    <ul class="package-features" data-i18n="packages.premium.features">
                         <li>Everything in Professional</li>
                         <li>Personal brand strategy</li>
                         <li>Portfolio/website review</li>
@@ -379,7 +398,6 @@
                         <li>Video interview coaching (1hr)</li>
                         <li>Job search strategy session</li>
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -389,28 +407,32 @@
     <section class="process-section">
         <div class="container">
             <div class="process-header">
-                <h2 class="section-title">How It Works</h2>
+                <h2 class="section-title" data-i18n="process.title">How It Works</h2>
             </div>
             <div class="process-steps">
                 <div class="process-step">
                     <div class="step-number">1</div>
-                    <h3>Upload Your CV</h3>
-                    <p>Share your current CV and tell us about your target roles and career goals.</p>
+                    <h3 data-i18n="process.step1.t">Upload Your CV</h3>
+                    <p data-i18n="process.step1.p">Share your current CV and tell us about your target roles and career
+                        goals.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">2</div>
-                    <h3>Professional Review</h3>
-                    <p>Our expert writers analyze your experience and optimize for ATS and remote positions.</p>
+                    <h3 data-i18n="process.step2.t">Professional Review</h3>
+                    <p data-i18n="process.step2.p">Our expert writers analyze your experience and optimize for ATS and
+                        remote positions.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
-                    <h3>Receive Your CV</h3>
-                    <p>Get your professionally written, ATS-optimized CV ready to land interviews.</p>
+                    <h3 data-i18n="process.step3.t">Receive Your CV</h3>
+                    <p data-i18n="process.step3.p">Get your professionally written, ATS-optimized CV ready to land
+                        interviews.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">4</div>
-                    <h3>Land Interviews</h3>
-                    <p>Apply with confidence and start getting interview callbacks from top remote companies.</p>
+                    <h3 data-i18n="process.step4.t">Land Interviews</h3>
+                    <p data-i18n="process.step4.p">Apply with confidence and start getting interview callbacks from top
+                        remote companies.</p>
                 </div>
             </div>
         </div>
@@ -420,8 +442,9 @@
     <section class="transformations-section">
         <div class="container">
             <div class="process-header">
-                <h2 class="section-title">See the Transformation</h2>
-                <p class="section-subtitle">From generic to interview-winning in 48 hours</p>
+                <h2 class="section-title" data-i18n="transform.title">See the Transformation</h2>
+                <p class="section-subtitle" data-i18n="transform.subtitle">From generic to interview-winning in 48 hours
+                </p>
             </div>
 
             <div class="comparison-slider-container">
@@ -429,12 +452,12 @@
                     <div class="slider-image before">
                         <!-- REPLACE WITH YOUR "BEFORE" IMAGE -->
                         <img src="images/templates/Template-6.jpg" alt="Generic CV Before">
-                        <div class="label">BEFORE</div>
+                        <div class="label" data-i18n="transform.before">BEFORE</div>
                     </div>
                     <div class="slider-image after">
                         <!-- REPLACE WITH YOUR "AFTER" IMAGE -->
                         <img src="images/templates/Template-5.jpg" alt="CV Lik Version After">
-                        <div class="label">AFTER</div>
+                        <div class="label" data-i18n="transform.after">AFTER</div>
                     </div>
                     <div class="slider-handle">
                         <div class="handle-line"></div>
@@ -450,8 +473,8 @@
                 </div>
 
                 <div class="result-caption">
-                    <span class="badge">✓ Result</span>
-                    <p>Mrs Blue landed 5 interviews in 2 weeks at a remote US startup.</p>
+                    <span class="badge" data-i18n="transform.badge">✓ Result</span>
+                    <p data-i18n="transform.result">Mrs Blue landed 5 interviews in 2 weeks at a remote US startup.</p>
                 </div>
             </div>
         </div>
@@ -461,10 +484,12 @@
     <section class="download-section">
         <div class="container">
             <div class="download-content">
-                <h2>Get Our Free Remote Job Guide</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 30px;">Download our comprehensive guide to landing remote
+                <h2 data-i18n="download.title">Get Our Free Remote Job Guide</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;" data-i18n="download.desc">Download our comprehensive
+                    guide to landing remote
                     positions, including ATS tips and interview strategies.</p>
-                <a href="javascript:void(0)" onclick="downloadGuide()" class="download-button">Download Free Guide</a>
+                <a href="javascript:void(0)" onclick="downloadGuide()" class="download-button"
+                    data-i18n="download.btn">Download Free Guide</a>
             </div>
         </div>
     </section>
@@ -473,49 +498,39 @@
     <section class="faq-section">
         <div class="container">
             <div class="faq-header">
-                <h2 class="section-title">Common Questions</h2>
-                <p class="section-subtitle">Everything you need to know about our CV service.</p>
+                <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+                <p class="section-subtitle" data-i18n="faq.subtitle">Everything you need to know about our CV service.
+                </p>
             </div>
-            <div class="faq-container">
+            <div class="faq-grid">
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" data-i18n="faq.q1.q">
+                        How long does it take to get my CV?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" style="display: none;" data-i18n="faq.q1.a">
+                        Depending on your package, it takes between 12 to 48 hours. We prioritize quality and strategic
+                        positioning to ensure you get the best results.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q2.q">
                         What makes your CV writing service different?
                         <span>+</span>
                     </div>
-                    <div class="faq-answer" style="display: none;">
+                    <div class="faq-answer" style="display: none;" data-i18n="faq.q2.a">
                         We specialize in ATS optimization and remote job positioning. Our writers have placed 500+
-                        candidates in remote roles at international companies. We don't use generic templates - every CV
-                        is custom-written based on your unique experience and target roles.
+                        candidates in remote roles at international companies.
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
-                        How long does the process take?
+                    <div class="faq-question" data-i18n="faq.q3.q">
+                        What if I'm not satisfied?
                         <span>+</span>
                     </div>
-                    <div class="faq-answer" style="display: none;">
-                        Standard delivery is 48 hours for the Essential package, 24 hours for Professional, and 12 hours
-                        for Premium. Rush delivery options are available for urgent needs.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Do you work with all industries?
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        Yes! We have experience across tech, marketing, finance, design, customer service, and more. Our
-                        writers research industry-specific keywords and requirements for each client.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        What if I'm not satisfied with the result?
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
+                    <div class="faq-answer" style="display: none;" data-i18n="faq.q3.a">
                         All packages include revisions. We'll work with you until you're completely satisfied. Your
-                        success is our priority, and we stand behind our work 100%.
+                        success is our priority.
                     </div>
                 </div>
             </div>
@@ -525,8 +540,9 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 CV Lik. Professional CV Writing for Remote Jobs.</p>
-            <p style="margin-top: 10px; opacity: 0.7;">Helping job seekers land remote positions worldwide.</p>
+            <p data-i18n="footer.text">&copy; 2026 CV Lik. Professional CV Writing for Remote Jobs.</p>
+            <p style="margin-top: 10px; opacity: 0.7;" data-i18n="footer.subtext">Helping job seekers land remote
+                positions worldwide.</p>
         </div>
     </footer>
 
